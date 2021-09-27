@@ -49,6 +49,22 @@ print(dists)
 ## 112.04463396]
 
 
+
+
+# 오름차순으로 정렬된 인덱스 순을 반환
+# numpy 을 사용해 위 생성한 거리(dists) 에서 거리가 가장 짧은 데이터의 index을 정렬(sort) 합니다. 
+sorted_index = np.lexsort((dists,dists))## fix me ## 
+print(sorted_index)
+##
+# 나와야하는 정답
+# array([2, 1, 0, 3, 4, 5], dtype=int64)
+#########
+##
+# 실행 결과
+# [2 1 0 3 4 5]
+### 의문점. dtype=int64는 왜 안나왔는가?
+
+
 # 파일저장시 해야하는 명령어
 #git add 파일명 
 #git commit -m "msg" 
