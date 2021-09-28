@@ -64,6 +64,20 @@ print(sorted_index)
 # [2 1 0 3 4 5]
 ### 의문점. dtype=int64는 왜 안나왔는가?
 
+# 위 생성한 sorted index 을 사용해 거리가 가장 짧은 순서대로 labels 을 나열합니다. 
+sorted_labels = [labels[i] for i in sorted_index]
+# 위 생성한 sorted_labels 을 활용해 거리가 가장 가까운 k=4 개의 데이터를 가져옵니다. 
+K_nearest_labels = sorted_labels[:4]## fix me ##
+print(K_nearest_labels)
+
+##
+# 나와야하는 정답
+# array(['Romance', 'Romance', 'Romance', 'Action'], dtype='<U7')
+#########
+##
+# 실행 결과
+# ['Romance', 'Romance', 'Romance', 'Action']
+### dtype은 계속 안나오고있음.
 
 # 파일저장시 해야하는 명령어
 #git add 파일명 
