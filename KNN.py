@@ -79,8 +79,26 @@ print(K_nearest_labels)
 # ['Romance', 'Romance', 'Romance', 'Action']
 ### dtype은 계속 안나오고있음.
 
+
+# K 개의 아이템에서 각 항목이 몇번씩 등작했는지 count합니다. 
+count_dict = {}
+for label in K_nearest_labels:
+    count_dict[label] = count_dict.get(label,0) + 1
+    ## fix me ##
+
+print(count_dict)
+
+##
+# 나와야하는 정답
+# {'Romance': 3, 'Action': 1}
+#########
+##
+# 실행 결과
+# {'Romance': 3, 'Action': 1}
+
+
 # 파일저장시 해야하는 명령어
-#git add 파일명 
+#git add KNN.py
 #git commit -m "msg" 
 #git push opensource master
 
