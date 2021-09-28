@@ -114,6 +114,30 @@ print(_labels[count_labels.argmax()])
 # 각 항목의 type 값 변경시 결과 바뀌는것을 확인
 
 
+def classify_knn(inX, dataset, labels, K):
+    dists = np.sqrt(np.sum((dataset-inX)**2, axis=1))
+    sorted_index = np.lexsort((dists,dists))
+    sorted_labels = [labels[i] for i in sorted_index]
+    K_nearest_labels = sorted_labels[:4]
+    _labels, count_labels = np.unique(K_nearest_labels, return_counts=True)## fix me ## 
+    ## fix me ## 
+    return _labels[count_labels.argmax()]
+
+# 아래 function 이 작동하도록 설계하시오.
+# 킥 횟수가 52번, 키스 횟수가 10번인 작품
+print(classify_knn([52, 10], dataset, labels, 4))
+##'Action'
+# 킥 횟수가 19번, 키스 횟수가 72번인 작품
+print(classify_knn([19, 72], dataset, labels, 4))
+##'Romance'
+
+##
+# 실행 결과
+# Action
+# Romance
+
+
+
 # 파일저장시 해야하는 명령어
 #git add KNN.py
 #git commit -m "msg" 
