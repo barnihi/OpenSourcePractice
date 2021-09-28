@@ -95,6 +95,23 @@ print(count_dict)
 ##
 # 실행 결과
 # {'Romance': 3, 'Action': 1}
+# 각 항목의 type 값 변경시 count_dict 결과도 바뀌는것을 확인
+
+
+# 제일 많이 등장한 횟수를 찾아 반환합니다. 
+# 해당 예제에서는 Romance 을 반환해야 합니다. 
+# np.unique 함수를 사용해야 합니다. 
+_labels, count_labels = np.unique(K_nearest_labels, return_counts=True)## fix me ## 
+print(_labels[count_labels.argmax()])
+
+##
+# 나와야하는 정답
+# Romance
+#########
+##
+# 실행 결과
+# Romance
+# 각 항목의 type 값 변경시 결과 바뀌는것을 확인
 
 
 # 파일저장시 해야하는 명령어
