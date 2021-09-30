@@ -1,5 +1,5 @@
 # 답안작성자 32171586 박범진 32171586@dankook.ac.kr
-# 대부분의 코드는 강의에서 제공됨
+# fix me 를 제외한 부분은 강의에서 제공된 부분이며, 작성자는 fixme에 해당하는 부분만 변경했음을 밝힘
 import numpy as np
 import matplotlib.pyplot as plt
 # 0번째 열 : 킥 횟수, 1번째 열 : 키스 횟수
@@ -138,9 +138,4 @@ print(classify_knn([19, 72], dataset, labels, 4))
 # Romance
 
 
-
-# 파일저장시 해야하는 명령어
-#git add KNN.py
-#git commit -m "msg" 
-#git push opensource master
 
