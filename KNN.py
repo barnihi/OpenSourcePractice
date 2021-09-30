@@ -1,4 +1,4 @@
-
+# 작성자 32171586 박범진 32171586@dankook.ac.kr
 import numpy as np
 import matplotlib.pyplot as plt
 # 0번째 열 : 킥 횟수, 1번째 열 : 키스 횟수
