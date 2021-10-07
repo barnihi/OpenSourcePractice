@@ -116,7 +116,6 @@ for i in range(k):
     # 각 군집의 평균을 계산해 centroids 에 할당 합니다. 
     centroids[i] = target_point.mean(axis=0)
 
-
 num_data = dataset.shape[0]
 
 cluster_per_point = np.ones((num_data))
@@ -134,7 +133,7 @@ while True:
     # (4) 각 군집 별 점들의 평균을 계산 후, 군집의 중심점을 다시 계산
     ## fix me ##            
     target_point = dataset[cluster_per_point==i] ## fix me ##
-    centroids[i] = target_point.mean(axis=0) 
+    centroids[i] = np.mean(target_point,axis=0) 
     ## (5) cluster 값이 변하지 않으면 while 구문을 종료(np.all 구문 사용)
     if np.all(prev_cluster_per_point == cluster_per_point): ## fix me##:
         break
@@ -149,3 +148,59 @@ while True:
         plt.scatter(centroids[:,0],centroids[:,1],
                     s=200, label="centroid", marker='+')
     plt.show()
+
+
+def cluster_kmeans(dataset, k):  
+       ## numpy broadcasting 을 활용해 코드 한줄로 모든 centroids 와 모든 데이터간 거리를 계산하세요. 
+       dists = np.vstack([np.sqrt(np.sum((dataset-centroids[0:1])**2, axis=1)),np.sqrt(np.sum((dataset-centroids[1:2])**2, axis=1)),np.sqrt(np.sum((dataset-centroids[2:3])**2, axis=1)),np.sqrt(np.sum((dataset-centroids[3:4])**2, axis=1))])
+
+       print(dists.shape) # dists 행렬의 형태
+
+       cluster_per_point = np.argmin(dists, axis=0)## fix me ##
+
+       # 각 군집별로 순회
+       k = 4 
+       for i in range(k):    
+           # 각 군집에 해당하는 데이터들을 가져옵니다. 
+           target_point = dataset[cluster_per_point==i] ## fix me ## 
+           #print(target_point)
+       
+           # 각 군집의 평균을 계산해 centroids 에 할당 합니다. 
+           centroids[i] = target_point.mean(axis=0)
+
+       num_data = dataset.shape[0]
+
+       cluster_per_point = np.ones((num_data))
+
+       counter = 0
+       while True:
+           prev_cluster_per_point = cluster_per_point
+       
+           # (2) 중심점과 각 데이터 사이의 거리를 계산
+           dists = np.vstack([np.sqrt(np.sum((dataset-centroids[0:1])**2, axis=1)),np.sqrt(np.sum((dataset-centroids[1:2])**2, axis=1)),np.sqrt(np.sum((dataset-centroids[2:3])**2, axis=1)),np.sqrt(np.sum((dataset-centroids[3:4])**2, axis=1))])## fix me ##
+
+           # (3) 각 데이터를 거리가 가장 가까운 군집으로 할당
+           ## fix me ##
+           cluster_per_point = np.argmin(dists, axis=0)## fix me ##
+           # (4) 각 군집 별 점들의 평균을 계산 후, 군집의 중심점을 다시 계산
+           ## fix me ##            
+           target_point = dataset[cluster_per_point==i] ## fix me ##
+           centroids[i] = np.mean(target_point,axis=0) 
+           ## (5) cluster 값이 변하지 않으면 while 구문을 종료(np.all 구문 사용)
+           if np.all(prev_cluster_per_point == cluster_per_point): ## fix me##:
+               break
+           
+           # 시각화 코드 
+           counter += 1
+           plt.title("{}th Distribution of Dataset".format(counter))
+           for idx, color in enumerate(['r','g','b','y']):
+                  mask = (cluster_per_point==idx)
+                  plt.scatter(dataset[mask,0],dataset[mask,1],
+                              label='dataset', c=color)
+                  plt.scatter(centroids[:,0],centroids[:,1],
+                              s=200, label="centroid", marker='+')
+           plt.show()
+## fix ## 
+       return centroids
+
+print(cluster_kmeans(dataset,4))
